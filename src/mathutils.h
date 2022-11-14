@@ -20,7 +20,7 @@
 
 #pragma once
 
-namespace Math
+namespace SMath
 {
     inline double DegToRad(double deg)
     {

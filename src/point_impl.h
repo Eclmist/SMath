@@ -77,7 +77,7 @@ bool Point<T, N>::operator==(const Point& b) const
 {
 
     for (int i = 0; i < N; ++i)
-        if (std::fabs(this->m_Data[i] - b.m_Data[i]) > Math::Epsilon)
+        if (std::fabs(this->m_Data[i] - b.m_Data[i]) > SMath::Epsilon)
             return false;
 
     return true;

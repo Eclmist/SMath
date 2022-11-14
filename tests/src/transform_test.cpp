@@ -42,7 +42,7 @@ TEST(TransformTest, CanSetTranlation)
 TEST(TransformTest, CanSetRotation)
 {
     SMath::Transform t;
-    ASSERT_NO_THROW(t.SetRotation({ Math::Pi / 2, 0, 0 }));
+    ASSERT_NO_THROW(t.SetRotation({ SMath::Pi / 2, 0, 0 }));
     EXPECT_EQ(t.GetMatrix(), SMath::Matrix4x4(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1));
 }
 
@@ -65,15 +65,15 @@ TEST(TransformTest, MatrixHasCorrectValues)
     EXPECT_EQ(t.GetMatrix(), SMath::Matrix4x4(1, 0, 0, 1, 0, 1, 0, 2, 0, 0, 4, 3, 0, 0, 0, 1));
     EXPECT_EQ(t.GetMatrixInverse(), SMath::Matrix4x4(1, 0, 0, 1, 0, 1, 0, 2, 0, 0, 4, 3, 0, 0, 0, 1).Inversed());
 
-    ASSERT_NO_THROW(t2.SetRotation({ Math::Pi / 2, 0, 0 }));
+    ASSERT_NO_THROW(t2.SetRotation({ SMath::Pi / 2, 0, 0 }));
     EXPECT_EQ(t2.GetMatrix(), SMath::Matrix4x4(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1));
     EXPECT_EQ(t2.GetMatrixInverse(), SMath::Matrix4x4(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1).Inversed());
 
-    ASSERT_NO_THROW(t2.SetRotation({ Math::Pi / 2, Math::Pi / 2, Math::Pi / 2 }));
+    ASSERT_NO_THROW(t2.SetRotation({ SMath::Pi / 2, SMath::Pi / 2, SMath::Pi / 2 }));
     EXPECT_EQ(t2.GetMatrix(), SMath::Matrix4x4(0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1));
     EXPECT_EQ(t2.GetMatrixInverse(), SMath::Matrix4x4(0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1).Inversed());
 
-    ASSERT_NO_THROW(t.SetRotation({ Math::Pi / 2, Math::Pi / 2, Math::Pi / 2 }));
+    ASSERT_NO_THROW(t.SetRotation({ SMath::Pi / 2, SMath::Pi / 2, SMath::Pi / 2 }));
     EXPECT_EQ(t.GetMatrix(), SMath::Matrix4x4(0, 0, 4, 1, 0, 1, 0, 2, -1, 0, 0, 3, 0, 0, 0, 1));
     EXPECT_EQ(t.GetMatrixInverse(), SMath::Matrix4x4(0, 0, 4, 1, 0, 1, 0, 2, -1, 0, 0, 3, 0, 0, 0, 1).Inversed());
 }
@@ -124,7 +124,7 @@ TEST(TransformTest, CanTransformVectorsScaled)
 TEST(TransformTest, CanTransformVectorsRotated)
 {
     SMath::Transform t;
-    t.SetRotation({ 0, Math::DegToRad(90), 0 });
+    t.SetRotation({ 0, SMath::DegToRad(90), 0 });
 
     SMath::Vector3 forward = { 0, 0, 1 };
     SMath::Vector3 up = { 0, 1, 0 };
@@ -135,7 +135,7 @@ TEST(TransformTest, CanTransformVectorsRotated)
     EXPECT_EQ(t(up), up);
     EXPECT_EQ(t(right), -forward);
 
-    t.SetRotation({ Math::DegToRad(90), 0, 0});
+    t.SetRotation({ SMath::DegToRad(90), 0, 0});
     EXPECT_EQ(t(forward), -up);
     EXPECT_EQ(t(up), forward);
     EXPECT_EQ(t(right), right);
@@ -189,7 +189,7 @@ TEST(TransformTest, CanTransformPointsScaled)
 TEST(TransformTest, CanTransformPointsRotated)
 {
     SMath::Transform t;
-    t.SetRotation({ 0, Math::DegToRad(90), 0 });
+    t.SetRotation({ 0, SMath::DegToRad(90), 0 });
 
     SMath::Point3 forward = { 0, 0, 1 };
     SMath::Point3 up = { 0, 1, 0 };
@@ -200,7 +200,7 @@ TEST(TransformTest, CanTransformPointsRotated)
     EXPECT_EQ(t(up), up);
     EXPECT_EQ(t(right), -forward);
 
-    t.SetRotation({ Math::DegToRad(90), 0, 0 });
+    t.SetRotation({ SMath::DegToRad(90), 0, 0 });
     EXPECT_EQ(t(forward), -up);
     EXPECT_EQ(t(up), forward);
     EXPECT_EQ(t(right), right);
@@ -262,7 +262,7 @@ TEST(TransformTest, CanTransformNormalsScaled)
 TEST(TransformTest, CanTransformNormalsRotated)
 {
     SMath::Transform t;
-    t.SetRotation({ 0, Math::DegToRad(90), 0 });
+    t.SetRotation({ 0, SMath::DegToRad(90), 0 });
 
     SMath::Normal3 forward = { 0, 0, 1 };
     SMath::Normal3 up = { 0, 1, 0 };
@@ -273,7 +273,7 @@ TEST(TransformTest, CanTransformNormalsRotated)
     EXPECT_EQ(t(up), up);
     EXPECT_EQ(t(right), -forward);
 
-    t.SetRotation({ Math::DegToRad(90), 0, 0 });
+    t.SetRotation({ SMath::DegToRad(90), 0, 0 });
     EXPECT_EQ(t(forward), -up);
     EXPECT_EQ(t(up), forward);
     EXPECT_EQ(t(right), right);
@@ -329,7 +329,7 @@ TEST(TransformTest, CanTransformRaysScaled)
 TEST(TransformTest, CanTransformRaysRotated)
 {
     SMath::Transform t;
-    t.SetRotation({ 0, Math::DegToRad(90), 0 });
+    t.SetRotation({ 0, SMath::DegToRad(90), 0 });
 
     SMath::Ray forward({ 0,0,1 }, { 0,0,1 });
     SMath::Ray up({ 0,1,0 }, { 0,1,0 });
@@ -350,9 +350,9 @@ TEST(TransformTest, CanGetInverse)
 
     t.SetTranslation({ 1, 2, 3 });
     t.SetScale({ 1, 1, 4 });
-    t.SetRotation({ Math::Pi / 2, Math::Pi / 2, Math::Pi / 2 });
-    t2.SetRotation({ Math::Pi / 2, 0, 0 });
-    t2.SetRotation({ Math::Pi / 2, Math::Pi / 2, Math::Pi / 2 });
+    t.SetRotation({ SMath::Pi / 2, SMath::Pi / 2, SMath::Pi / 2 });
+    t2.SetRotation({ SMath::Pi / 2, 0, 0 });
+    t2.SetRotation({ SMath::Pi / 2, SMath::Pi / 2, SMath::Pi / 2 });
 
     SMath::Transform tInv = t.Inversed();
     SMath::Transform tInv2 = t2.Inversed();
@@ -378,7 +378,7 @@ TEST(TransformTest, CorrectOrderOfTransformations)
     EXPECT_EQ(t(up), SMath::Point3(0, 2, 0));
     EXPECT_EQ(t(right), SMath::Point3(2, 0, 0));
 
-    t.SetRotation(SMath::Vector3(Math::DegToRad(90), 0, 0));
+    t.SetRotation(SMath::Vector3(SMath::DegToRad(90), 0, 0));
     EXPECT_EQ(t(front), SMath::Point3(0, -2, 0));
     EXPECT_EQ(t(up), SMath::Point3(0, 0, 2));
     EXPECT_EQ(t(right), SMath::Point3(2, 0, 0));
@@ -391,7 +391,7 @@ TEST(TransformTest, CorrectOrderOfTransformations)
     SMath::Transform t2;
     SMath::Point3 origin = { 0, 0, 0 };
     t2.SetTranslation({ 10, 100, 20 });
-    t2.SetRotation({ Math::DegToRad(90), 0, 0 });
+    t2.SetRotation({ SMath::DegToRad(90), 0, 0 });
     EXPECT_EQ(t2(origin), SMath::Point3(10, 100, 20));
     SMath::Vector3 forward = { 0, 0, 1 };
     EXPECT_EQ(t2(forward), SMath::Vector3(0, -1, 0));
@@ -401,7 +401,7 @@ TEST(TransformTest, CorrectOrderOfTransformations)
     SMath::Transform t3;
     t3.SetTranslation({ 0, 0.5, -10 });
     t3.SetScale({ 0.005 });
-    t3.SetRotation({ Math::DegToRad(2), 0, 0 });
+    t3.SetRotation({ SMath::DegToRad(2), 0, 0 });
     EXPECT_EQ(t3(forwardRay).GetOrigin(), SMath::Point3(0, 0.5, -10));
 }
 

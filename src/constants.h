@@ -20,7 +20,7 @@
 
 #pragma once
 
-namespace Math
+namespace SMath
 {
     const double E        = 2.71828182845904523536;    // e
     const double Pi       = 3.14159265358979323846;    // pi

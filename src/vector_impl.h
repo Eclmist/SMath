@@ -152,7 +152,7 @@ bool Vector<T, N>::operator==(const Vector& b) const
 {
 
     for (int i = 0; i < N; ++i)
-        if (std::fabs(this->m_Data[i] - b.m_Data[i]) > Math::Epsilon)
+        if (std::fabs(this->m_Data[i] - b.m_Data[i]) > SMath::Epsilon)
             return false;
 
     return true;
