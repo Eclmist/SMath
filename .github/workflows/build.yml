@@ -1,0 +1,49 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  Windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Latest
+        uses: actions/checkout@v2.3.1
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Generate & Build Project
+        run: |
+             cmake -Bbuild .
+             cmake --build ./build --config Release
+        shell: cmd
+      - name: Run Unit Tests
+        run: |
+             ./bin/unittests/UnitTests.exe
+        shell: powershell
+  Macos:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout Latest
+        uses: actions/checkout@v2.3.1
+      - name: Generate & Build Project
+        run: |
+             cmake -Bbuild .
+             cmake --build ./build --config Release
+      - name: Run Unit Tests
+        run: |
+             ./bin/unittests/UnitTests
+  Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Latest
+        uses: actions/checkout@v2.3.1
+      - name: Generate & Build Project
+        run: |
+             cmake -Bbuild .
+             cmake --build ./build --config Release
+        env:
+         CC:   gcc-10
+         CXX:  g++-10
+      - name: Run Unit Tests
+        run: |
+             ./bin/unittests/UnitTests
+        
