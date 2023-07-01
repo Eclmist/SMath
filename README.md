@@ -19,6 +19,10 @@
 # Introduction
 SMath is a simple open-source C++20 math library for graphics applications.
 
+SMath is used by both realtime and offline renderers:
+- [Ether](https://github.com/Eclmist/Ether) - A realtime DirectX12 rendering engine
+- [Spectre](https://github.com/Eclmist/Spectre) - A physically based spectral raytracing library
+
 # Requirements
 - Only CMake versions 3.8 and up is supported
 - If compiling with GCC, use GCC10 and above
