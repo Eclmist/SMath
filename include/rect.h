@@ -28,7 +28,7 @@ namespace SMath
         ~Rect() = default;
 
     public:
-        bool IsWithinBounds(T x, T y) const;
+        bool Contains(T x, T y) const;
 
     public:
         T x, y;

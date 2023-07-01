@@ -100,12 +100,12 @@ TEST(Normal3Test, CanBeCopied)
 
 TEST(Normal3Test, CanCheckEquality)
 {
-    EXPECT_EQ(SMath::Normal3 (1.0), SMath::Normal3(1.0));
-    EXPECT_EQ(SMath::Normal3 (0.2), SMath::Normal3(0.2));
-    EXPECT_EQ(SMath::Normal3 (1.0, 2.0, 3.0), SMath::Normal3(1.0, 2.0, 3.0));
-    EXPECT_NE(SMath::Normal3 (0.0), SMath::Normal3(1.0));
-    EXPECT_NE(SMath::Normal3 (0.0), SMath::Normal3(0.00001));
-    EXPECT_NE(SMath::Normal3 (0.0, 1.0, 2.0), SMath::Normal3(0.0, 1.0, 2.1));
+    EXPECT_EQ(SMath::Normal3(1.0), SMath::Normal3(1.0));
+    EXPECT_EQ(SMath::Normal3(0.2), SMath::Normal3(0.2));
+    EXPECT_EQ(SMath::Normal3(1.0, 2.0, 3.0), SMath::Normal3(1.0, 2.0, 3.0));
+    EXPECT_NE(SMath::Normal3(0.0), SMath::Normal3(1.0));
+    EXPECT_NE(SMath::Normal3(0.0), SMath::Normal3(0.00001));
+    EXPECT_NE(SMath::Normal3(0.0, 1.0, 2.0), SMath::Normal3(0.0, 1.0, 2.1));
 }
 
 TEST(Normal3Test, CanBeAddAssigned)
@@ -240,7 +240,7 @@ TEST(Normal3Test, CanComputeDotProduct)
 {
     EXPECT_DOUBLE_EQ(SMath::Normal3::Dot({ 1.0 }, { 2.0 }), 6.0);
     EXPECT_DOUBLE_EQ(SMath::Normal3::Dot({ 1.0, 2.0, 3.0 }, { 2.0, 2.0, 1.0 }), 9.0);
-    EXPECT_DOUBLE_EQ(SMath::Normal3::Dot({ -1.0 }, { 2.0 }), -6.0 );
+    EXPECT_DOUBLE_EQ(SMath::Normal3::Dot({ -1.0 }, { 2.0 }), -6.0);
     EXPECT_DOUBLE_EQ(SMath::Normal3::Dot({ 1.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0 }), 0.0);
     EXPECT_DOUBLE_EQ(SMath::Normal3::AbsDot({ -1.0 }, { 2.0 }), 6.0);
     EXPECT_DOUBLE_EQ(SMath::Normal3::AbsDot({ 1.0 }, { 2.0 }), 6.0);

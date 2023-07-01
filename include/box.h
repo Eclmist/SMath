@@ -16,18 +16,32 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-template<typename T>
-Rect<T>::Rect(T x, T y, T w, T h)
+#pragma once
+
+#include "linalg.h"
+
+namespace SMath
 {
-    this->x = x;
-    this->y = y;
-    this->w = w;
-    this->h = h;
+    template<typename T>
+    class Box
+    {
+    public:
+        Box(const Point<T, 3>& min, const Point<T, 3>& max);
+        ~Box() = default;
+
+    public:
+        bool Contains(const Point<T, 3>& point) const;
+        Vector<T, 3> GetSize() const;
+        T GetSurfaceArea() const;
+
+    public:
+        static Box Union(const Box& a, const Box& b);
+
+    public:
+        Point<T, 3> m_Min;
+        Point<T, 3> m_Max;
+    };
+
+    #include "box_impl.h" 
 }
 
-template<typename T>
-bool Rect<T>::Contains(T x, T y) const
-{
-    return x >= this->x && x < (this->x + this->w) &&
-        y >= this->y && y < (this->y + this->h);
-}

@@ -57,7 +57,7 @@ TEST(Matrix4x4Test, CanBeInitializedWithValues)
 
 TEST(Matrix4x4Test, CanBeInitializedWithArray)
 {
-    double data[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    double data[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
     SMath::Matrix4x4 m(data);
     for (int i = 0; i < 16; ++i)
         EXPECT_DOUBLE_EQ(m.m_Data[i], i);
@@ -73,13 +73,13 @@ TEST(Matrix4x4Test, CanBeInitializedWithArray2D)
 
 TEST(Matrix4x4Test, CanCheckIfIdentity)
 {
-    EXPECT_TRUE(SMath::Matrix4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1).IsIdentity());
-    EXPECT_FALSE(SMath::Matrix4x4(1,1,1,0,0,1,0,1,1,0,1,1,0,1,0,1).IsIdentity());
-    EXPECT_FALSE(SMath::Matrix4x4(2,0,0,0,0,2,0,0,0,0,2,0,0,0,0,2).IsIdentity());
-    EXPECT_FALSE(SMath::Matrix4x4(1,0,0,0,1,1,0,0,0,0,1,0,0,0,0,1).IsIdentity());
-    EXPECT_FALSE(SMath::Matrix4x4(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0).IsIdentity());
-    EXPECT_FALSE(SMath::Matrix4x4(-1,0,0,0,0,-1,0,0,0,0,-1,0,0,0,0,-1).IsIdentity());
-    EXPECT_FALSE(SMath::Matrix4x4(0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0).IsIdentity());
+    EXPECT_TRUE(SMath::Matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1).IsIdentity());
+    EXPECT_FALSE(SMath::Matrix4x4(1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1).IsIdentity());
+    EXPECT_FALSE(SMath::Matrix4x4(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2).IsIdentity());
+    EXPECT_FALSE(SMath::Matrix4x4(1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1).IsIdentity());
+    EXPECT_FALSE(SMath::Matrix4x4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).IsIdentity());
+    EXPECT_FALSE(SMath::Matrix4x4(-1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1).IsIdentity());
+    EXPECT_FALSE(SMath::Matrix4x4(0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0).IsIdentity());
 }
 
 TEST(Matrix4x4Test, DefaultsToIdentity)
@@ -101,7 +101,7 @@ TEST(Matrix4x4Test, CanMultiply)
 {
     SMath::Matrix4x4 m(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
     SMath::Matrix4x4 res(56, 62, 68, 74, 152, 174, 196, 218, 248, 286, 324, 362, 344, 398, 452, 506);
-    SMath::Matrix4x4 res2(1680,1940,2200,2460,4880,5620,6360,7100,8080,9300,10520,11740,11280,12980,14680,16380);
+    SMath::Matrix4x4 res2(1680, 1940, 2200, 2460, 4880, 5620, 6360, 7100, 8080, 9300, 10520, 11740, 11280, 12980, 14680, 16380);
 
     EXPECT_EQ(m * m, res);
     EXPECT_EQ(m * res, res2);

@@ -241,7 +241,7 @@ TEST(Vector2Test, CanComputeDotProduct)
 {
     EXPECT_DOUBLE_EQ(SMath::Vector2::Dot({ 1.0 }, { 2.0 }), 4.0);
     EXPECT_DOUBLE_EQ(SMath::Vector2::Dot({ 1.0, 2.0 }, { 2.0, 2.0 }), 6.0);
-    EXPECT_DOUBLE_EQ(SMath::Vector2::Dot({ -1.0 }, { 2.0 }), -4.0 );
+    EXPECT_DOUBLE_EQ(SMath::Vector2::Dot({ -1.0 }, { 2.0 }), -4.0);
     EXPECT_DOUBLE_EQ(SMath::Vector2::Dot({ 1.0, 0.0 }, { 0.0, 1.0 }), 0.0);
     EXPECT_DOUBLE_EQ(SMath::Vector2::AbsDot({ -1.0 }, { 2.0 }), 4.0);
     EXPECT_DOUBLE_EQ(SMath::Vector2::AbsDot({ 1.0 }, { 2.0 }), 4.0);

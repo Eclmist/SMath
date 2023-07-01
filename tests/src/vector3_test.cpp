@@ -68,6 +68,7 @@ TEST(Vector3Test, CanBeAccessedPerComponent)
     EXPECT_DOUBLE_EQ(v[1], 2.0);
     EXPECT_DOUBLE_EQ(v[2], 3.0);
     EXPECT_DOUBLE_EQ(v.x, 1.0);
+
     EXPECT_DOUBLE_EQ(v.y, 2.0);
     EXPECT_DOUBLE_EQ(v.z, 3.0);
 }
@@ -262,7 +263,7 @@ TEST(Vector3Test, CanComputeDotProduct)
 {
     EXPECT_DOUBLE_EQ(SMath::Vector3::Dot({ 1.0 }, { 2.0 }), 6.0);
     EXPECT_DOUBLE_EQ(SMath::Vector3::Dot({ 1.0, 2.0, 3.0 }, { 2.0, 2.0, 1.0 }), 9.0);
-    EXPECT_DOUBLE_EQ(SMath::Vector3::Dot({ -1.0 }, { 2.0 }), -6.0 );
+    EXPECT_DOUBLE_EQ(SMath::Vector3::Dot({ -1.0 }, { 2.0 }), -6.0);
     EXPECT_DOUBLE_EQ(SMath::Vector3::Dot({ 1.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0 }), 0.0);
     EXPECT_DOUBLE_EQ(SMath::Vector3::AbsDot({ -1.0 }, { 2.0 }), 6.0);
     EXPECT_DOUBLE_EQ(SMath::Vector3::AbsDot({ 1.0 }, { 2.0 }), 6.0);

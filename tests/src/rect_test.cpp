@@ -31,12 +31,12 @@ TEST(RectTest, CanBeCreated)
 TEST(RectTest, CanCheckIfInBounds)
 {
     SMath::Rect rect(100, 200, 200, 400);
-    EXPECT_FALSE(rect.IsWithinBounds(99, 199));
-    EXPECT_FALSE(rect.IsWithinBounds(100, 199));
-    EXPECT_TRUE(rect.IsWithinBounds(100, 200));
+    EXPECT_FALSE(rect.Contains(99, 199));
+    EXPECT_FALSE(rect.Contains(100, 199));
+    EXPECT_TRUE(rect.Contains(100, 200));
 
-    EXPECT_FALSE(rect.IsWithinBounds(300, 600));
-    EXPECT_FALSE(rect.IsWithinBounds(299, 600));
-    EXPECT_FALSE(rect.IsWithinBounds(300, 599));
-    EXPECT_TRUE(rect.IsWithinBounds(299, 599));
+    EXPECT_FALSE(rect.Contains(300, 600));
+    EXPECT_FALSE(rect.Contains(299, 600));
+    EXPECT_FALSE(rect.Contains(300, 599));
+    EXPECT_TRUE(rect.Contains(299, 599));
 }

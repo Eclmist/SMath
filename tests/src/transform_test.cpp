@@ -22,41 +22,46 @@
 TEST(TransformTest, CanGetTranslationMatrix)
 {
     auto mt1 = SMath::Transform<double>::GetTranslationMatrix({});
-    ASSERT_EQ(mt1, SMath::Matrix4x4(1, 0, 0, 0,
-                                    0, 1, 0, 0,
-                                    0, 0, 1, 0,
-                                    0, 0, 0, 1));
+    ASSERT_EQ(mt1, SMath::Matrix4x4(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1));
 
     auto mt2 = SMath::Transform<double>::GetTranslationMatrix({ 5, 6, 7 });
-    ASSERT_EQ(mt2, SMath::Matrix4x4(1, 0, 0, 5,
-                                    0, 1, 0, 6,
-                                    0, 0, 1, 7,
-                                    0, 0, 0, 1));
+    ASSERT_EQ(mt2, SMath::Matrix4x4(
+        1, 0, 0, 5,
+        0, 1, 0, 6,
+        0, 0, 1, 7,
+        0, 0, 0, 1));
 }
 
 TEST(TransformTest, CanGetRotationMatrix)
 {
     auto mt1 = SMath::Transform<double>::GetRotationMatrix({});
-    ASSERT_EQ(mt1, SMath::Matrix4x4(1, 0, 0, 0,
-                                    0, 1, 0, 0,
-                                    0, 0, 1, 0,
-                                    0, 0, 0, 1));
+    ASSERT_EQ(mt1, SMath::Matrix4x4(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1));
 
 
-    auto mt2 = SMath::Transform<double>::GetRotationMatrix({SMath::Pi, SMath::Pi * 2, -SMath::Pi});
+    auto mt2 = SMath::Transform<double>::GetRotationMatrix({ SMath::Pi, SMath::Pi * 2, -SMath::Pi });
 
-    ASSERT_EQ(mt2, SMath::Matrix4x4(-1, 0, 0, 0,
-                                    0, 1, 0, 0,
-                                    0, 0, -1, 0,
-                                    0, 0, 0, 1));
+    ASSERT_EQ(mt2, SMath::Matrix4x4(
+        -1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, -1, 0,
+        0, 0, 0, 1));
 }
 
 TEST(TransformTest, CanGetScaleMatrix)
 {
     auto mt1 = SMath::Transform<double>::GetScaleMatrix({ 5, 6, 7 });
-    ASSERT_EQ(mt1, SMath::Matrix4x4(5, 0, 0, 0,
-                                    0, 6, 0, 0,
-                                    0, 0, 7, 0,
-                                    0, 0, 0, 1));
+    ASSERT_EQ(mt1, SMath::Matrix4x4(
+        5, 0, 0, 0,
+        0, 6, 0, 0,
+        0, 0, 7, 0,
+        0, 0, 0, 1));
 }
 

@@ -37,7 +37,7 @@ TEST(LinearAlgebraTest, CanMultiplyMatricesWithVectors3x3)
     EXPECT_EQ(i * f, f);
 
     SMath::Matrix3x3 m1 = { 1, 2, 3, -4, -5, -6, 7, 8, 9 };
-    EXPECT_EQ(m1 * a, SMath::Vector3(6, -15, 24 ));
+    EXPECT_EQ(m1 * a, SMath::Vector3(6, -15, 24));
     EXPECT_EQ(m1 * b, SMath::Vector3(19.5965, -44.8214, 70.0463));
     EXPECT_EQ(m1 * c, SMath::Vector3(-14.996, 32.027, -49.058));
     EXPECT_EQ(m1 * d, SMath::Vector3(-3.158, 11.765, -20.372));
