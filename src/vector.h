@@ -94,7 +94,7 @@ namespace SMath
         inline T& operator[](int i) { return this->m_Data[i]; }
 
     public:
-        double Magnitude() const;
+        T Magnitude() const;
         T SquareMagnitude() const;
         void Normalize();
         Vector Normalized() const;
@@ -105,8 +105,8 @@ namespace SMath
     public:
         static T Dot(const Vector& a, const Vector& b);
         static T AbsDot(const Vector& a, const Vector& b);
-        static double Angle(const Vector& a, const Vector& b);
-        static double CosAngle(const Vector& a, const Vector& b);
+        static T Angle(const Vector& a, const Vector& b);
+        static T CosAngle(const Vector& a, const Vector& b);
         static Vector<T, 3> Cross(const Vector& a, const Vector& b);
     };
 

@@ -24,28 +24,30 @@
 
 namespace SMath
 {
+    template <typename T>
     class Ray
     {
     public:
-        Ray(const Point3& origin = { 0.0 }, const Vector3& direction = { 1.0 });
+        Ray(const Point<T, 3>& origin = { T(0) }, const Vector<T, 3>& direction = { T(1) });
         ~Ray() = default;
 
     public:
-        inline Point3 operator()(double t) const { return m_Origin + m_Direction * t; }
+        inline Point<T, 3> operator()(T t) const { return m_Origin + m_Direction * t; }
 
-        inline Point3 GetOrigin() const { return m_Origin; }
-        inline Vector3 GetDirection() const { return m_Direction; }
+        inline Point<T, 3> GetOrigin() const { return m_Origin; }
+        inline Vector<T, 3> GetDirection() const { return m_Direction; }
 
-        inline void SetOrigin(Point3 origin) { m_Origin = origin; }
-        inline void SetDirection(Vector3 direction) { m_Direction = direction.Normalized(); }
+        inline void SetOrigin(Point<T, 3> origin) { m_Origin = origin; }
+        inline void SetDirection(Vector<T, 3> direction) { m_Direction = direction.Normalized(); }
 
     public:
         bool operator==(const Ray& r) const;
         bool operator!=(const Ray& r) const;
 
     private:
-        Point3 m_Origin;
-        Vector3 m_Direction;
+        Point<T, 3> m_Origin;
+        Vector<T, 3> m_Direction;
     };
 
+#include "ray_impl.h"
 }

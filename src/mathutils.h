@@ -25,13 +25,13 @@ namespace SMath
     template <typename T>
     inline T DegToRad(T deg)
     {
-        return deg * (Pi / 180);
+        return deg * (Pi / T(180));
     }
 
     template <typename T>
     inline T RadToDeg(T rad)
     {
-        return rad * (180.0 / Pi);
+        return rad * (T(180) / Pi);
     }
 }
 

@@ -165,7 +165,7 @@ bool Vector<T, N>::operator!=(const Vector& b) const
 }
 
 template<typename T, int N>
-double Vector<T, N>::Magnitude() const
+T Vector<T, N>::Magnitude() const
 {
     return std::sqrt(Dot(*this, *this));
 }
@@ -174,6 +174,28 @@ template<typename T, int N>
 T Vector<T, N>::SquareMagnitude() const
 {
     return Dot(*this, *this);
+}
+
+template<typename T, int N>
+void Vector<T, N>::Normalize()
+{
+    *this /= Vector<T, N>(Magnitude());
+}
+
+template<typename T, int N>
+Vector<T, N> Vector<T, N>::Normalized() const
+{
+    return *this / Vector<T, N>(Magnitude());
+}
+
+template <typename T, int N>
+template <int M>
+Vector<T, M> Vector<T, N>::Resize() const
+{
+    Vector<T, M> data;
+    for (int i = 0; i < N && i < M; ++i)
+        data[i] = this->m_Data[i];
+    return data;
 }
 
 template<typename T, int N>
@@ -192,25 +214,13 @@ T Vector<T, N>::AbsDot(const Vector& a, const Vector& b)
 }
 
 template<typename T, int N>
-void Vector<T, N>::Normalize()
-{
-    *this /= Vector<T, N>(Magnitude());
-}
-
-template<typename T, int N>
-Vector<T, N> Vector<T, N>::Normalized() const
-{
-    return *this / Vector<T, N>(Magnitude());
-}
-
-template<typename T, int N>
-double Vector<T, N>::Angle(const Vector& a, const Vector& b)
+T Vector<T, N>::Angle(const Vector& a, const Vector& b)
 {
     return acos(std::clamp(CosAngle(a, b), -1.0, 1.0));
 }
 
 template<typename T, int N>
-double Vector<T, N>::CosAngle(const Vector& a, const Vector& b)
+T Vector<T, N>::CosAngle(const Vector& a, const Vector& b)
 {
     return Dot(a, b) / (a.Magnitude() * b.Magnitude());
 }
@@ -223,15 +233,5 @@ Vector<T, 3> Vector<T, N>::Cross(const Vector& a, const Vector& b)
     Vector<T, 3> tmp1 = Vector<T, 3>(b[1], b[2], b[0]) * a;
     Vector<T, 3> tmp2 = tmp1 - tmp0;
     return { tmp2[1], tmp2[2], tmp2[0] };
-}
-
-template <typename T, int N>
-template <int M>
-Vector<T, M> Vector<T, N>::Resize() const
-{
-    Vector<T, M> data;
-    for (int i = 0; i < N && i < M; ++i)
-        data[i] = this->m_Data[i];
-    return data;
 }
 

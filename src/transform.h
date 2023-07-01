@@ -29,6 +29,9 @@ namespace SMath
     class Transform
     {
     public:
+        Transform() = delete;
+
+    public:
         static Matrix<T, 4> GetTranslationMatrix(const Vector<T, 3>& translation);
         static Matrix<T, 4> GetRotationMatrix(const Vector<T, 3>& rotation);
         static Matrix<T, 4> GetScaleMatrix(const Vector<T, 3>& scale);

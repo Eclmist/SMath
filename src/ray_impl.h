@@ -18,25 +18,23 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "ray.h"
-
-namespace SMath
+template <typename T>
+SMath::Ray<T>::Ray(const Point<T, 3>& origin, const Vector<T, 3>& direction)
+    : m_Origin(origin)
+    , m_Direction(direction)
 {
-    Ray::Ray(const Point3& origin, const Vector3& direction)
-        : m_Origin(origin)
-        , m_Direction(direction)
-    {
-        m_Direction.Normalize();
-    }
+    m_Direction.Normalize();
+}
 
-    bool Ray::operator==(const Ray& r) const
-    {
-        return m_Origin == r.m_Origin && m_Direction == r.m_Direction;
-    }
+template <typename T>
+bool SMath::Ray<T>::operator==(const Ray& r) const
+{
+    return m_Origin == r.m_Origin && m_Direction == r.m_Direction;
+}
 
-    bool Ray::operator!=(const Ray& r) const
-    {
-        return !(*this == r);
-    }
+template <typename T>
+bool SMath::Ray<T>::operator!=(const Ray& r) const
+{
+    return !(*this == r);
 }
 

@@ -16,25 +16,4 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "rect.h"
-#include <stdexcept>
-
-namespace SMath
-{
-    Rect::Rect(int x, int y, int w, int h)
-        : x(x)
-        , y(y)
-        , w(w)
-        , h(h)
-    {
-        if (w < 0 || h < 0)
-            throw std::invalid_argument("Rects cannot have negative size");
-    }
-
-    bool Rect::IsWithinBounds(int _x, int _y) const
-    {
-        return _x >= x && _x < (x + w) &&
-               _y >= y && _y < (y + h);
-    }
-}
-
+#include "smath.h"

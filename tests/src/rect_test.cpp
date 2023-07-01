@@ -21,9 +21,6 @@
 
 TEST(RectTest, CanBeCreated)
 {
-    ASSERT_THROW(SMath::Rect rect(0, 0, -1, 0), std::invalid_argument);
-    ASSERT_THROW(SMath::Rect rect(0, 0, 0, -1), std::invalid_argument);
-    ASSERT_THROW(SMath::Rect rect(0, 0, -1, -1), std::invalid_argument);
     ASSERT_NO_THROW(SMath::Rect rect(0, 0, 0, 0));
     ASSERT_NO_THROW(SMath::Rect rect(-1, 0, 0, 0));
     ASSERT_NO_THROW(SMath::Rect rect(0, -1, 0, 0));
