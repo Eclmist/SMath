@@ -58,10 +58,17 @@ Vector<T, N>::Vector(const T* data)
 }
 
 template<typename T, int N>
-inline Vector<T, N>::Vector(const Vector& copy)
+Vector<T, N>::Vector(const Vector& copy)
 {
     for (int i = 0; i < N; ++i)
         this->m_Data[i] = copy.m_Data[i];
+}
+
+template<typename T, int N>
+Vector<T, N>::Vector(const VectorData<T, N>& data)
+{
+    for (int i = 0; i < N; ++i)
+        this->m_Data[i] = data.m_Data[i];
 }
 
 template<typename T, int N>

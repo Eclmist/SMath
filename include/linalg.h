@@ -51,9 +51,9 @@ namespace SMath
     typedef Matrix<int, 4> Matrix4x4i;
 
     template<typename T, int N>
-    inline Vector<T, N> operator*(const Matrix<T, N>& m, const Vector<T, N>& v)
+    inline VectorData<T, N> operator*(const Matrix<T, N>& m, const VectorData<T, N>& v)
     {
-        Vector<T, N> result;
+        VectorData<T, N> result;
 
         for (int i = 0; i < N; ++i)
             for (int j = 0; j < N; ++j)
@@ -63,15 +63,15 @@ namespace SMath
     }
 
     template<typename T, int N>
-    inline Point<T, N> operator*(const Matrix<T, N>& m, const Point<T, N>& p)
+    inline Vector<T, N> operator*(const Matrix<T, N>& m, const Vector<T, N>& v)
     {
-        Point<T, N> result;
+        return m * static_cast<VectorData<T, N>>(v);
+    }
 
-        for (int i = 0; i < N; ++i)
-            for (int j = 0; j < N; ++j)
-                result.m_Data[i] += m.m_Data2D[i][j] * p.m_Data[j];
-
-        return result;
+    template<typename T, int N>
+    inline Point<T, N> operator*(const Matrix<T, N>& m, const Point<T, N>& v)
+    {
+        return m * static_cast<VectorData<T, N>>(v);
     }
 
     template<typename T, int N>

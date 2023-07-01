@@ -49,5 +49,5 @@ namespace SMath
         Vector<T, 3> m_Direction;
     };
 
-#include "ray_impl.h"
+    #include "ray_impl.h"
 }

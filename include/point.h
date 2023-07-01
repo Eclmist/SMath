@@ -27,7 +27,7 @@ namespace SMath
     template<typename T, int N>
     class Point : public VectorData<T, N>
     {
-        static_assert(std::is_arithmetic_v<T>, "Vector only works with arithmetic types");
+        static_assert(std::is_arithmetic_v<T>, "Point only works with arithmetic types");
 
     public:
         Point(T v = 0.0);
@@ -35,6 +35,8 @@ namespace SMath
         Point(T x, T y, T z);
         Point(T x, T y, T z, T w);
         Point(const T* data);
+        Point(const Point& copy);
+        Point(const VectorData<T, N>& data);
 
         Point operator+() const;
         Point operator-() const;

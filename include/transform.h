@@ -44,6 +44,6 @@ namespace SMath
         static Matrix<T, 4> GetPerspectiveMatrixRH(T fovy, T aspect, T znear, T zfar);
     };
 
-#include "transform_impl.h"
+    #include "transform_impl.h"
 }
 

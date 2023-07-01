@@ -73,6 +73,7 @@ namespace SMath
         Vector(T x, T y, T z, T w);
         Vector(const T* data);
         Vector(const Vector& copy);
+        Vector(const VectorData<T, N>& data);
 
         Vector operator+() const;
         Vector operator-() const;

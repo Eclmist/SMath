@@ -58,6 +58,20 @@ Point<T, N>::Point(const T* data)
 }
 
 template<typename T, int N>
+Point<T, N>::Point(const Point& copy)
+{
+    for (int i = 0; i < N; ++i)
+        this->m_Data[i] = copy.m_Data[i];
+}
+
+template<typename T, int N>
+Point<T, N>::Point(const VectorData<T, N>& data)
+{
+    for (int i = 0; i < N; ++i)
+        this->m_Data[i] = data.m_Data[i];
+}
+
+template<typename T, int N>
 Point<T, N> Point<T, N>::operator+() const
 {
     return *this;
