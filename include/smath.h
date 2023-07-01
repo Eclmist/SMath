@@ -22,5 +22,6 @@
 #include "ray.h"
 #include "transform.h"
 #include "rect.h"
+#include "box.h"
 #include "random.h"
 
