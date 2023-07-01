@@ -89,6 +89,16 @@ bool Point<T, N>::operator!=(const Point& b) const
     return !(*this == b);
 }
 
+template <typename T, int N>
+template <int M>
+Point<T, M> Point<T, N>::Resize() const
+{
+    Point<T, M> data;
+    for (int i = 0; i < N && i < M; ++i)
+        data[i] = this->m_Data[i];
+    return data;
+}
+
 template<typename T, int N>
 double Point<T, N>::Distance(const Point& a, const Point& b)
 {

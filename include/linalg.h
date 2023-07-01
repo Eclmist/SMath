@@ -63,6 +63,18 @@ namespace SMath
     }
 
     template<typename T, int N>
+    inline Point<T, N> operator*(const Matrix<T, N>& m, const Point<T, N>& p)
+    {
+        Point<T, N> result;
+
+        for (int i = 0; i < N; ++i)
+            for (int j = 0; j < N; ++j)
+                result.m_Data[i] += m.m_Data2D[i][j] * p.m_Data[j];
+
+        return result;
+    }
+
+    template<typename T, int N>
     inline Point<T, N> operator+(const Point<T, N>& p, const Vector<T, N>& v)
     {
         Point<T, N> res;

@@ -45,6 +45,9 @@ namespace SMath
         inline T operator[](int i) const { return this->m_Data[i]; }
         inline T& operator[](int i) { return this->m_Data[i]; }
 
+        template <int M>
+        Point<T, M> Resize() const;
+
     public:
         static double Distance(const Point& a, const Point& b);
         static double SquareDistance(const Point& a, const Point& b);
