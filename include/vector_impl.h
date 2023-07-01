@@ -157,7 +157,6 @@ Vector<T, N>& Vector<T, N>::operator/=(const Vector& b)
 template<typename T, int N>
 bool Vector<T, N>::operator==(const Vector& b) const
 {
-
     for (int i = 0; i < N; ++i)
         if (std::fabs(this->m_Data[i] - b.m_Data[i]) > SMath::Epsilon)
             return false;

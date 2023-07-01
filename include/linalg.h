@@ -56,8 +56,12 @@ namespace SMath
         VectorData<T, N> result;
 
         for (int i = 0; i < N; ++i)
+        {
+            result.m_Data[i] = 0;
+
             for (int j = 0; j < N; ++j)
                 result.m_Data[i] += m.m_Data2D[i][j] * v.m_Data[j];
+        }
 
         return result;
     }
@@ -69,9 +73,9 @@ namespace SMath
     }
 
     template<typename T, int N>
-    inline Point<T, N> operator*(const Matrix<T, N>& m, const Point<T, N>& v)
+    inline Point<T, N> operator*(const Matrix<T, N>& m, const Point<T, N>& p)
     {
-        return m * static_cast<VectorData<T, N>>(v);
+        return m * static_cast<VectorData<T, N>>(p);
     }
 
     template<typename T, int N>
