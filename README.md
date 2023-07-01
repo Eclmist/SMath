@@ -51,3 +51,7 @@ typedef SMath::Ray                  Ray;
 typedef SMath::Rect                 Rect;
 typedef SMath::Transform            Transform;
 ```
+
+# Usage
+SMath is developed with Test Driven Development (TDD). As such, you can find all usages of basically every functionality in their respective [unit tests](https://github.com/Eclmist/SMath/tree/master/tests/src).
+
