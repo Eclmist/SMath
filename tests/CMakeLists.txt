@@ -44,9 +44,3 @@ source_group(TREE ${CMAKE_CURRENT_LIST_DIR} FILES ${extern_files})
 add_executable(UnitTests ${all_files} ${extern_files})
 set_target_properties(UnitTests PROPERTIES RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_SOURCE_DIR}/bin/unittests>)
 
-# =========================================================================== #
-#                                LINK LIBRARIES                               #
-# =========================================================================== #
-
-target_link_libraries(UnitTests SpectreMath)
-
