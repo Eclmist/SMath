@@ -16,24 +16,18 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
-
-namespace SMath
+template<typename T>
+Rect<T>::Rect(T x, T y, T w, T h)
 {
-    template<typename T>
-    class Rect
-    {
-    public:
-        Rect(T x, T y, T w, T h);
-        ~Rect() = default;
+    this->x = x;
+    this->y = y;
+    this->w = w;
+    this->h = h;
+}
 
-    public:
-        bool IsWithinBounds(T x, T y) const;
-
-    public:
-        T x, y;
-        T w, h;
-    };
-
-    #include "rect_impl.h" 
+template<typename T>
+bool Rect<T>::IsWithinBounds(T x, T y) const
+{
+    return x >= this->x && x < (this->x + this->w) &&
+        y >= this->y && y < (this->y + this->h);
 }
