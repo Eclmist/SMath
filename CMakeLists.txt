@@ -35,18 +35,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # =========================================================================== #
-#                         USER CONFIGURABLE OPTIONS                           #
-# =========================================================================== #
-
-option(USE_AVX_2 "Use AVX-2" OFF)
-
-# =========================================================================== #
 #                        ADD SOURCE FILES TO PROJECT                          #
 # =========================================================================== #
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src")
 
-file(GLOB_RECURSE project_headers src/*.h)
+file(GLOB_RECURSE project_headers include/*.h)
 file(GLOB_RECURSE project_cpps src/*.cpp)
 set(all_files ${project_headers} ${project_cpps})
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${all_files})
@@ -57,9 +51,9 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${all_files})
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-file(GLOB_RECURSE stb include/stb/*)
-set(extern_files ${stb})
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${extern_files})
+file(GLOB_RECURSE includes include/*)
+set(include_files ${includes})
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${include_files})
 
 # =========================================================================== #
 #                          SET COMPILATION TARGETS                            #
@@ -67,38 +61,6 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${extern_files})
 
 add_library(${PROJECT_NAME} STATIC ${all_files} ${extern_files})
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_CURRENT_SOURCE_DIR}/bin>)
-
-# =========================================================================== #
-#                        PLATFORM SPECIFIC SETTIGNS                           #
-# =========================================================================== #
-
-# Define platform
-if(WIN32)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC SPC_PLATFORM_WIN)
-    # Enable multi-threaded compilation on Windows
-    include(ProcessorCount)
-    ProcessorCount(N)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP${N}")
-    # Ignore C26451 warnings because they are annoying
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd26451")
-elseif(APPLE)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC SPC_PLATFORM_MAC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-elseif(UNIX)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC SPC_PLATFORM_LINUX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-endif()
-
-if (USE_AVX_2)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC SPC_USE_AVX_2)
-    if(WIN32)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /arch:AVX2")
-    elseif(APPLE)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx2")
-    elseif(UNIX)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx2")
-    endif()
-endif()
 
 # =========================================================================== #
 #                             INCLUDE SUBPROJECTS                             #
