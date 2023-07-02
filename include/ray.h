@@ -28,25 +28,25 @@ namespace SMath
     class Ray
     {
     public:
-        Ray(const Point<T, 3>& origin = { T(0) }, const Vector<T, 3>& direction = { T(1) });
+        Ray(const Point<T, 3>& origin = {},
+            const Vector<T, 3>& direction = { T(0), T(0), T(1) },
+            T tMin = Epsilon,
+            T tMax = std::numeric_limits<T>::max());
         ~Ray() = default;
 
     public:
         inline Point<T, 3> operator()(T t) const { return m_Origin + m_Direction * t; }
 
-        inline Point<T, 3> GetOrigin() const { return m_Origin; }
-        inline Vector<T, 3> GetDirection() const { return m_Direction; }
-
-        inline void SetOrigin(Point<T, 3> origin) { m_Origin = origin; }
-        inline void SetDirection(Vector<T, 3> direction) { m_Direction = direction.Normalized(); }
-
     public:
         bool operator==(const Ray& r) const;
         bool operator!=(const Ray& r) const;
 
-    private:
+    public:
         Point<T, 3> m_Origin;
         Vector<T, 3> m_Direction;
+
+        T m_TMin;
+        T m_TMax;
     };
 
     #include "ray_impl.h"

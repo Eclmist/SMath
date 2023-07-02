@@ -19,9 +19,15 @@
 */
 
 template <typename T>
-SMath::Ray<T>::Ray(const Point<T, 3>& origin, const Vector<T, 3>& direction)
+SMath::Ray<T>::Ray(
+    const Point<T, 3>& origin,
+    const Vector<T, 3>& direction,
+    T tMin,
+    T tMax)
     : m_Origin(origin)
     , m_Direction(direction)
+    , m_TMin(tMin)
+    , m_TMax(tMax)
 {
     m_Direction.Normalize();
 }

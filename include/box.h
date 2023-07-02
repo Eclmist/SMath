@@ -26,6 +26,7 @@ namespace SMath
     class Box
     {
     public:
+        Box() = default;
         Box(const Point<T, 3>& min, const Point<T, 3>& max);
         ~Box() = default;
 
