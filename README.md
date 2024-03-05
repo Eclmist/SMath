@@ -26,6 +26,7 @@ SMath is used by both realtime and offline renderers:
 # Requirements
 - Only CMake versions 3.8 and up is supported (for included CMakeList and unit test project)
 - If compiling with GCC, use GCC10 and above
+- C++20
 
 # Getting Started
 Add all files in `src` into any C++20 project and include `src/smath.h` to get started.
