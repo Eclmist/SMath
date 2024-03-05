@@ -24,7 +24,7 @@ SMath is used by both realtime and offline renderers:
 - [Spectre](https://github.com/Eclmist/Spectre) - A physically based spectral raytracing library
 
 # Requirements
-- Only CMake versions 3.8 and up is supported
+- Only CMake versions 3.8 and up is supported (for included CMakeList and unit test project)
 - If compiling with GCC, use GCC10 and above
 
 # Getting Started
