@@ -2,7 +2,7 @@
     SMath
   <br>
 </h1>
-<h4 align="center">A C++20 header-only vector/matrix math library for graphics applications.</h4>
+<h4 align="center">A C++20 header-only math library for graphics applications.</h4>
 
 <p align="center">
   <a href="https://github.com/Eclmist/SMath/actions">
