@@ -28,12 +28,6 @@ SMath::Matrix<T, 4> SMath::Transform<T>::GetTranslationMatrix(const Vector<T, 3>
 }
 
 template <typename T>
-SMath::Matrix<T, 4> SMath::Transform<T>::GetRotationMatrix(const Vector<T, 3>& rotation)
-{
-    return GetRotationMatrixZ(rotation.z) * GetRotationMatrixY(rotation.y) * GetRotationMatrixX(rotation.x);
-}
-
-template <typename T>
 SMath::Matrix<T, 4> SMath::Transform<T>::GetScaleMatrix(const Vector<T, 3>& scale)
 {
     return { scale.x, 0, 0, 0,
@@ -43,30 +37,43 @@ SMath::Matrix<T, 4> SMath::Transform<T>::GetScaleMatrix(const Vector<T, 3>& scal
 }
 
 template <typename T>
-SMath::Matrix<T, 4> SMath::Transform<T>::GetRotationMatrixX(T rotX)
+SMath::Matrix<T, 4> SMath::Transform<T>::GetRotationMatrix(const Quaternion<T>& rotation)
 {
-    return { 1, 0, 0, 0,
-             0, cos(rotX), -sin(rotX), 0,
-             0, sin(rotX), cos(rotX), 0,
-             0, 0, 0, 1 };
-}
+    const double x2 = rotation.x + rotation.x;
+    const double y2 = rotation.y + rotation.y;
+    const double z2 = rotation.z + rotation.z;
+    const double xx = rotation.x * x2;
+    const double yy = rotation.y * y2;
+    const double zz = rotation.z * z2;
+    const double xy = rotation.x * y2;
+    const double xz = rotation.x * z2;
+    const double yz = rotation.y * z2;
+    const double wx = rotation.w * x2;
+    const double wy = rotation.w * y2;
+    const double wz = rotation.w * z2;
 
-template <typename T>
-SMath::Matrix<T, 4> SMath::Transform<T>::GetRotationMatrixY(T rotY)
-{
-    return { cos(rotY), 0, sin(rotY), 0,
-             0, 1, 0, 0,
-             -sin(rotY), 0, cos(rotY), 0,
-             0, 0, 0, 1 };
-}
+    SMath::Matrix<T, 4> out;
+    out.m_Data2D[0][0] = 1.0f - (yy + zz);
+    out.m_Data2D[0][1] = xy - wz;
+    out.m_Data2D[0][2] = xz + wy;
+    out.m_Data2D[0][3] = 0.0f;
 
-template <typename T>
-SMath::Matrix<T, 4> SMath::Transform<T>::GetRotationMatrixZ(T rotZ)
-{
-    return { cos(rotZ), -sin(rotZ), 0, 0,
-             sin(rotZ), cos(rotZ), 0, 0,
-             0, 0, 1, 0,
-             0, 0, 0, 1 };
+    out.m_Data2D[1][0] = xy + wz;
+    out.m_Data2D[1][1] = 1.0f - (xx + zz);
+    out.m_Data2D[1][2] = yz - wx;
+    out.m_Data2D[1][3] = 0.0f;
+
+    out.m_Data2D[2][0] = xz - wy;
+    out.m_Data2D[2][1] = yz + wx;
+    out.m_Data2D[2][2] = 1.0f - (xx + yy);
+    out.m_Data2D[2][3] = 0.0f;
+
+    out.m_Data2D[3][0] = 0.0f;
+    out.m_Data2D[3][1] = 0.0f;
+    out.m_Data2D[3][2] = 0.0f;
+    out.m_Data2D[3][3] = 1.0f;
+
+    return out;
 }
 
 template <typename T>

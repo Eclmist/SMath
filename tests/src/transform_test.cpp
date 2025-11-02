@@ -45,8 +45,7 @@ TEST(TransformTest, CanGetRotationMatrix)
         0, 0, 1, 0,
         0, 0, 0, 1));
 
-
-    auto mt2 = SMath::Transform<double>::GetRotationMatrix({ SMath::Pi, SMath::Pi * 2, -SMath::Pi });
+    auto mt2 = SMath::Transform<double>::GetRotationMatrix(SMath::Quaternion<double>::FromEuler(SMath::Pi, SMath::Pi * 2, -SMath::Pi));
 
     ASSERT_EQ(mt2, SMath::Matrix4x4(
         -1, 0, 0, 0,

@@ -33,12 +33,8 @@ namespace SMath
 
     public:
         static Matrix<T, 4> GetTranslationMatrix(const Vector<T, 3>& translation);
-        static Matrix<T, 4> GetRotationMatrix(const Vector<T, 3>& rotation);
+        static Matrix<T, 4> GetRotationMatrix(const Quaternion<T>& rotation);
         static Matrix<T, 4> GetScaleMatrix(const Vector<T, 3>& scale);
-
-        static Matrix<T, 4> GetRotationMatrixX(T rotX);
-        static Matrix<T, 4> GetRotationMatrixY(T rotY);
-        static Matrix<T, 4> GetRotationMatrixZ(T rotZ);
 
         static Matrix<T, 4> GetPerspectiveMatrixLH(T fovy, T aspect, T znear, T zfar);
         static Matrix<T, 4> GetPerspectiveMatrixRH(T fovy, T aspect, T znear, T zfar);
