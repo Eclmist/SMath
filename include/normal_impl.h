@@ -3,7 +3,7 @@
     This file is part of Spectre, an open-source math library for graphics
     applications.
 
-    Copyright (c) 2020-2023 Samuel Van Allen - All rights reserved.
+    Copyright (c) 2020-2026 Samuel Huang - All rights reserved.
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
