@@ -353,6 +353,13 @@ Quaternion<T> Quaternion<T>::Slerp(const Quaternion& a, const Quaternion& b, T t
         dot = -dot;
     }
 
+    // Quaternions are very close, use linear interpolation
+    // If this is not done, the math below can create nans/infs
+    if (dot > T(0.9995f))
+    {
+        return Lerp(a, end, t);
+    }
+
     T theta = std::acos(dot);
     T sinTheta = std::sin(theta);
     T wa = std::sin((T(1) - t) * theta) / sinTheta;

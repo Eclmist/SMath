@@ -396,6 +396,47 @@ TEST(QuaternionTest, CanRotateVector)
     EXPECT_NEAR(rotated.z, 0.0, 1e-10);
 }
 
+TEST(QuaternionTest, CanLerp)
+{
+    SMath::Quaternion a(0.0, 0.0, 0.0, 1.0); // Identity
+    SMath::Quaternion b = SMath::Quaternion<double>::FromAxisAngle(SMath::Vector3(0.0, 0.0, 1.0), SMath::Pi / 2.0);
+
+    // At t=0, should equal a
+    SMath::Quaternion<double> result0 = SMath::Quaternion<double>::Lerp(a, b, 0.0);
+    EXPECT_NEAR(result0.x, a.x, 1e-10);
+    EXPECT_NEAR(result0.y, a.y, 1e-10);
+    EXPECT_NEAR(result0.z, a.z, 1e-10);
+    EXPECT_NEAR(result0.w, a.w, 1e-10);
+
+    // At t=1, should equal b
+    SMath::Quaternion<double> result1 = SMath::Quaternion<double>::Lerp(a, b, 1.0);
+    EXPECT_NEAR(result1.x, b.x, 1e-10);
+    EXPECT_NEAR(result1.y, b.y, 1e-10);
+    EXPECT_NEAR(result1.z, b.z, 1e-10);
+    EXPECT_NEAR(result1.w, b.w, 1e-10);
+
+    // At t=0.5, should be halfway interpolation
+    SMath::Quaternion<double> result_half = SMath::Quaternion<double>::Lerp(a, b, 0.5);
+
+    // Result should be normalized
+    EXPECT_NEAR(result_half.Magnitude(), 1.0, 1e-10);
+
+    // Should be between a and b
+    EXPECT_GT(SMath::Quaternion<double>::Dot(result_half, a), 0.0);
+    EXPECT_GT(SMath::Quaternion<double>::Dot(result_half, b), 0.0);
+
+    // Test with arbitrary quaternions
+    SMath::Quaternion<double> q1(1.0, 2.0, 3.0, 4.0);
+    q1.Normalize();
+    SMath::Quaternion<double> q2(2.0, 1.0, 4.0, 3.0);
+    q2.Normalize();
+
+    SMath::Quaternion<double> lerp_result = SMath::Quaternion<double>::Lerp(q1, q2, 0.3);
+
+    // Result must be normalized
+    EXPECT_NEAR(lerp_result.Magnitude(), 1.0, 1e-10);
+}
+
 TEST(QuaternionTest, CanSlerp)
 {
     SMath::Quaternion<double> a(0.0, 0.0, 0.0, 1.0); // Identity
@@ -422,6 +463,47 @@ TEST(QuaternionTest, CanSlerp)
     EXPECT_NEAR(result_half.y, expected_half.y, 1e-10);
     EXPECT_NEAR(result_half.z, expected_half.z, 1e-10);
     EXPECT_NEAR(result_half.w, expected_half.w, 1e-10);
+}
+
+TEST(QuaternionTest, SlerpUsesLerpForSmallAngles)
+{
+    // Test that Slerp falls back to Lerp for very close quaternions (dot > 0.9995)
+    // Use an extremely small angle that would cause division by near-zero sin(theta)
+    SMath::Quaternion<double> a(0.0, 0.0, 0.0, 1.0); // Identity
+    SMath::Quaternion<double> b = SMath::Quaternion<double>::FromAxisAngle(SMath::Vector3(0.0, 0.0, 1.0), 0.00001); // Extremely small rotation
+
+    // Verify quaternions are very close (dot should be > 0.9995)
+    double dot = SMath::Quaternion<double>::Dot(a, b);
+    EXPECT_GT(dot, 0.9995);
+
+    // Slerp should work without numerical issues (no NaN/Inf)
+    SMath::Quaternion<double> result = SMath::Quaternion<double>::Slerp(a, b, 0.5);
+
+    // Check all components are finite (not NaN or Inf)
+    EXPECT_TRUE(std::isfinite(result.x));
+    EXPECT_TRUE(std::isfinite(result.y));
+    EXPECT_TRUE(std::isfinite(result.z));
+    EXPECT_TRUE(std::isfinite(result.w));
+
+    // Result should be normalized
+    EXPECT_NEAR(result.Magnitude(), 1.0, 1e-6);
+
+    // Test with identity quaternions (most extreme case: dot = 1.0)
+    SMath::Quaternion<double> identity1(0.0, 0.0, 0.0, 1.0);
+    SMath::Quaternion<double> identity2(0.0, 0.0, 0.0, 1.0);
+    SMath::Quaternion<double> result_identity = SMath::Quaternion<double>::Slerp(identity1, identity2, 0.5);
+
+    // Should not produce NaN
+    EXPECT_TRUE(std::isfinite(result_identity.x));
+    EXPECT_TRUE(std::isfinite(result_identity.y));
+    EXPECT_TRUE(std::isfinite(result_identity.z));
+    EXPECT_TRUE(std::isfinite(result_identity.w));
+
+    // Should return a valid quaternion close to identity
+    EXPECT_NEAR(result_identity.x, 0.0, 1e-6);
+    EXPECT_NEAR(result_identity.y, 0.0, 1e-6);
+    EXPECT_NEAR(result_identity.z, 0.0, 1e-6);
+    EXPECT_NEAR(result_identity.w, 1.0, 1e-6);
 }
 
 TEST(QuaternionTest, CanCreateFromEulerAngles)
