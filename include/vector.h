@@ -20,47 +20,10 @@
 
 #pragma once
 
+#include "vectordata.h"
+
 namespace SMath
 {
-    template <typename T, int N>
-    class VectorData
-    {
-        static_assert(N >= 2 && N <= 4, "Only 2-4 dimensions are supported");
-    };
-
-    template <typename T>
-    class VectorData<T, 2>
-    {
-    public:
-        union
-        {
-            struct { T x, y; };
-            struct { T m_Data[2]; };
-        };
-    };
-
-    template <typename T>
-    class VectorData<T, 3>
-    {
-    public:
-        union
-        {
-            struct { T x, y, z; };
-            struct { T m_Data[3]; };
-        };
-    };
-
-    template <typename T>
-    class VectorData<T, 4>
-    {
-    public:
-        union
-        {
-            struct { T x, y, z, w; };
-            struct { T m_Data[4]; };
-        };
-    };
-
     template<typename T, int N>
     class Vector : public VectorData<T, N>
     {

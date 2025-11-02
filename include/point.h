@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "vector.h"
+#include "vectordata.h"
 
 namespace SMath
 {

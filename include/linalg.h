@@ -29,6 +29,7 @@
 #include "normal.h"
 #include "point.h"
 #include "matrix.h"
+#include "quaternion.h"
 
 namespace SMath
 {
@@ -50,6 +51,9 @@ namespace SMath
     typedef Matrix<int, 3> Matrix3x3i;
     typedef Matrix<int, 4> Matrix4x4i;
 
+    /**
+     * Matrix-Vector Operations
+     */
     template<typename T, int N>
     inline VectorData<T, N> operator*(const Matrix<T, N>& m, const VectorData<T, N>& v)
     {
@@ -72,12 +76,18 @@ namespace SMath
         return m * static_cast<VectorData<T, N>>(v);
     }
 
+    /**
+     * Matrix-Point Operations
+     */
     template<typename T, int N>
     inline Point<T, N> operator*(const Matrix<T, N>& m, const Point<T, N>& p)
     {
         return m * static_cast<VectorData<T, N>>(p);
     }
 
+    /**
+     * Vector-Point Operations
+     */
     template<typename T, int N>
     inline Point<T, N> operator+(const Point<T, N>& p, const Vector<T, N>& v)
     {

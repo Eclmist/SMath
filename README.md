@@ -47,6 +47,7 @@ typedef SMath::Matrix<double, 3>    Matrix3x3;
 typedef SMath::Matrix<double, 4>    Matrix4x4;
 typedef SMath::Matrix<int, 3>       Matrix3x3i;
 typedef SMath::Matrix<int, 4>       Matrix4x4i;
+typedef SMath::Quaternion<double>   Quaternion;
 
 typedef SMath::Ray                  Ray;
 typedef SMath::Rect                 Rect;
