@@ -61,6 +61,7 @@ namespace SMath
         inline T& operator[](int i) { return this->m_Data[i]; }
 
     public:
+        bool IsIdentity() const;
         T Magnitude() const;
         T SquareMagnitude() const;
         void Normalize();

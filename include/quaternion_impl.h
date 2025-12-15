@@ -186,6 +186,24 @@ bool Quaternion<T>::operator!=(const Quaternion& b) const
 }
 
 template<typename T>
+bool Quaternion<T>::IsIdentity() const
+{
+    if (std::fabs(this->x) > SMath::Epsilon)
+        return false;
+
+    if (std::fabs(this->y) > SMath::Epsilon)
+        return false;
+
+    if (std::fabs(this->z) > SMath::Epsilon)
+        return false;
+
+    if (std::fabs(this->w - 1.0f) > SMath::Epsilon)
+        return false;
+
+    return true;
+}
+
+template<typename T>
 T Quaternion<T>::Magnitude() const
 {
     return std::sqrt(SquareMagnitude());
@@ -330,7 +348,7 @@ Quaternion<T> Quaternion<T>::FromEuler(const Vector<T, 3>& euler)
 template<typename T>
 Quaternion<T> Quaternion<T>::Identity()
 {
-    return Quaternion(T(1), T(0), T(0), T(0));
+    return Quaternion(T(0), T(0), T(0), T(1));
 }
 
 template<typename T>

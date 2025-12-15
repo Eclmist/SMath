@@ -129,6 +129,17 @@ bool Matrix<T, N>::IsIdentity() const
 }
 
 template<typename T, int N>
+bool Matrix<T, N>::IsZero() const
+{
+    for (int i = 0; i < N; ++i)
+        for (int j = 0; j < N; ++j)
+            if (this->m_Data2D[i][j] != 0)
+                return false;
+
+    return true;
+}
+
+template<typename T, int N>
 Matrix<T, N> Matrix<T, N>::Transposed() const
 {
     Matrix<T, N> transposed;
@@ -180,6 +191,18 @@ double Matrix<T, N>::Determinant() const
         (this->m_Data[1] * this->m_Data[6] - this->m_Data[2] * this->m_Data[5]) * (this->m_Data[8] * this->m_Data[15] - this->m_Data[11] * this->m_Data[12]) -
         (this->m_Data[1] * this->m_Data[7] - this->m_Data[3] * this->m_Data[5]) * (this->m_Data[8] * this->m_Data[14] - this->m_Data[10] * this->m_Data[12]) +
         (this->m_Data[2] * this->m_Data[7] - this->m_Data[3] * this->m_Data[6]) * (this->m_Data[8] * this->m_Data[13] - this->m_Data[9] * this->m_Data[12]);
+}
+
+template<typename T, int N>
+Matrix<T, N> Matrix<T, N>::Identity()
+{
+    Matrix<T, N> identity;
+
+    for (int i = 0; i < N; ++i)
+        for (int j = 0; j < N; ++j)
+            identity.m_Data2D[i][j] = i == j ? 1 : 0;
+
+    return identity;
 }
 
 template<typename T, int N>

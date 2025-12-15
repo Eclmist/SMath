@@ -87,6 +87,12 @@ TEST(Matrix4x4Test, DefaultsToIdentity)
     EXPECT_TRUE(SMath::Matrix4x4().IsIdentity());
 }
 
+TEST(Matrix4x4Test, CanCreateIdentity)
+{
+    SMath::Matrix4x4 identity = SMath::Matrix4x4::Identity();
+    EXPECT_TRUE(identity.IsIdentity());
+}
+
 TEST(Matrix4x4Test, CanComputeTranspose)
 {
     SMath::Matrix4x4 m(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
@@ -106,5 +112,4 @@ TEST(Matrix4x4Test, CanMultiply)
     EXPECT_EQ(m * m, res);
     EXPECT_EQ(m * res, res2);
 }
-
 

@@ -24,13 +24,29 @@ TEST(QuaternionTest, CanBeCreated)
     ASSERT_NO_THROW(SMath::Quaternion<double> q);
 }
 
+TEST(QuaternionTest, CanCheckIfIdentity)
+{
+    EXPECT_FALSE(SMath::Quaternion<double>(1, 0, 0, 0).IsIdentity());
+    EXPECT_FALSE(SMath::Quaternion<double>(1, 1, 1, 0).IsIdentity());
+    EXPECT_FALSE(SMath::Quaternion<double>(2, 0, 0, 0).IsIdentity());
+    EXPECT_FALSE(SMath::Quaternion<double>(1, 0, 0, 0).IsIdentity());
+    EXPECT_FALSE(SMath::Quaternion<double>(0, 0, 0, 0).IsIdentity());
+    EXPECT_FALSE(SMath::Quaternion<double>(-1, 0, 0, 0).IsIdentity());
+    EXPECT_FALSE(SMath::Quaternion<double>(0, 0, 0, 1.001).IsIdentity());
+    EXPECT_FALSE(SMath::Quaternion<double>(0, 0, 0, 0.999).IsIdentity());
+    EXPECT_TRUE(SMath::Quaternion<double>(0, 0, 0, 1).IsIdentity());
+}
+
 TEST(QuaternionTest, DefaultsToIdentity)
 {
     SMath::Quaternion<double> q;
-    EXPECT_DOUBLE_EQ(q.x, 0.0);
-    EXPECT_DOUBLE_EQ(q.y, 0.0);
-    EXPECT_DOUBLE_EQ(q.z, 0.0);
-    EXPECT_DOUBLE_EQ(q.w, 1.0);
+    EXPECT_TRUE(q.IsIdentity());
+}
+
+TEST(QuaternionTest, CanCreateIdentity)
+{
+    SMath::Quaternion<double> identity = SMath::Quaternion<double>::Identity();
+    EXPECT_TRUE(identity.IsIdentity());
 }
 
 TEST(QuaternionTest, CanBeCreatedScalar)

@@ -86,11 +86,13 @@ namespace SMath
 
     public:
         bool IsIdentity() const;
+        bool IsZero() const;
         Matrix Transposed() const;
         Matrix<T, 4> Inversed() const;
         Matrix<T, 3> Upper3x3() const;
         
     public:
+        static Matrix<T, N> Identity();
         static Matrix<T, 4> From3x3(Matrix<T, 3> mat);
 
     private:
@@ -98,6 +100,5 @@ namespace SMath
     };
 
     #include "matrix_impl.h"
-
 }
 
